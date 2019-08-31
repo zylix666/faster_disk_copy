@@ -56,6 +56,10 @@ class Actions(QDialog):
     """
     def __init__(self):
         super().__init__()
+        self.left = 50
+        self.top = 50
+        self.width = 640
+        self.height = 480
         self.initUI()
         self.elapsed_time_dict = {}
         
@@ -74,7 +78,8 @@ class Actions(QDialog):
         
         self.vbox.addWidget(self.button)
         self.button.move(0, 30)
-        self.setLayout(self.vbox)  
+        self.setLayout(self.vbox)
+        self.setGeometry(self.left, self.top, self.width, self.height)
         self.show()
 
         self.button.clicked.connect(self.onButtonClick)
@@ -109,7 +114,7 @@ class Actions(QDialog):
         if(len(self.elapsed_time_dict) == thread_number):
             for et in self.elapsed_time_dict.values():
                 Total_elapsed_time += et
-            reply = QMessageBox.information(self, "All file copied","Total copy time : " + str(Total_elapsed_time) + "seconds.",
+            reply = QMessageBox.information(self, "All file copied","Total copy time : " + str(Total_elapsed_time) + " seconds.",
                                     QMessageBox.Ok)
 
 def split(arr, size):
