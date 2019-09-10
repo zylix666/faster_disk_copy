@@ -114,7 +114,11 @@ class Actions(QDialog):
         if(len(self.elapsed_time_dict) == thread_number):
             for et in self.elapsed_time_dict.values():
                 Total_elapsed_time += et
-            reply = QMessageBox.information(self, "All file copied","Total copy time : " + str(Total_elapsed_time) + " seconds.",
+            if thread_number > 2 : 
+                div_base = thread_number-1
+            else:
+                div_base = thread_number
+            reply = QMessageBox.information(self, "All file copied","Total copy time : " + str(Total_elapsed_time/div_base) + " seconds.",
                                     QMessageBox.Ok)
 
 def split(arr, size):
